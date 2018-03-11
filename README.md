@@ -12,7 +12,7 @@ It makes your MySQL queries easier.
 ## Examples of Usage
 ```javascript
 'use strict';
-const db     = require('./helpers/db');
+const db     = require('./db');
 const mysql  = require('mysql');
 
 let conn_ = mysql.createPool(config.database);
