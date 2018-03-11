@@ -7,7 +7,7 @@
 
 It makes your MySQL queries easier.
 
-*Inspired on [PHP's class_db](https://github.com/samuelfaj/class_db)*
+*Inspired by [PHP's class_db](https://github.com/samuelfaj/class_db)*
 
 ## Examples of Usage
 ```javascript
