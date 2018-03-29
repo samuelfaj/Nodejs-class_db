@@ -5,7 +5,7 @@ module.exports = function (pool) {
     const self = this;
 
     this.sql     = '';
-    this.table   = '';
+    this._table   = '';
 
     this.wheres  = [];
     this.orders  = [];
@@ -19,7 +19,7 @@ module.exports = function (pool) {
     this.insertId = undefined;
 
     this.table  = function ($table) {
-        self.table = $table;
+        self._table = $table;
 
         return self;
     };
@@ -66,7 +66,7 @@ module.exports = function (pool) {
     this.select = function ($fields = ['*'], $callback, $result_comparison_signal = '>') {
         self.sql =
             'SELECT ' + self.addslashes($fields.join(',')) + ' ' +
-            'FROM   ' + self.table + ' ' +
+            'FROM   ' + self._table + ' ' +
             self.mount_where();
 
         if(self.groups.length > 0){ self.sql = self.sql + ' GROUP BY ' + self.groups.join(','); }
@@ -92,11 +92,11 @@ module.exports = function (pool) {
 
         if(!$literal){
             self.sql =
-                "INSERT INTO " + self.table + " (" + keys.join(',') + ") " +
+                "INSERT INTO " + self._table + " (" + keys.join(',') + ") " +
                 "VALUES ('" + values.join("','") + "');";
         } else {
             self.sql =
-                "INSERT INTO " + self.table + " (" + keys.join(',') + ") " +
+                "INSERT INTO " + self._table + " (" + keys.join(',') + ") " +
                 "VALUES (" + values.join(",") + ");";
         }
 
@@ -111,7 +111,7 @@ module.exports = function (pool) {
 
         self.updates = ($addslashes) ? self.addslashes($update) : $update;
 
-        self.sql = "UPDATE " + self.table + self.mount_update($literal) + $where;
+        self.sql = "UPDATE " + self._table + self.mount_update($literal) + $where;
 
         self.exec('update',$result_comparison_signal, $callback);
 
@@ -122,7 +122,7 @@ module.exports = function (pool) {
 
         if($safemode && $where.length === 0) return false;
 
-        self.sql = "DELETE FROM " + self.table + $where;
+        self.sql = "DELETE FROM " + self._table + $where;
 
         self.exec('delete',$result_comparison_signal, $callback);
 
@@ -164,7 +164,7 @@ module.exports = function (pool) {
     this.clear  = function ($parameter = 'all'){
         switch($parameter){
             case 'limit':
-                self.limit = '';
+                self.q_limit = '';
                 break;
             case 'group':
             case 'groups':
@@ -179,7 +179,7 @@ module.exports = function (pool) {
                 self.orders = [];
                 break;
             default:
-                self.limit  = '';
+                self.q_limit  = '';
                 self.groups = [];
                 self.wheres = [];
                 self.orders = [];
