@@ -1,4 +1,4 @@
-# class_db.js
+# Class_DB
 <img src="https://www.issart.com/blog/wp-content/uploads/2017/03/boxbarimage5.jpg" width="150" align="right">
 
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -9,10 +9,15 @@ It makes your MySQL queries easier.
 
 *Inspired by [PHP's class_db](https://github.com/samuelfaj/class_db)*
 
+## Install
+```
+$ npm install --save class_db
+```
+
 ## Examples of Usage
 ```javascript
 'use strict';
-const db     = require('./db');
+const db     = require('class_db');
 const mysql  = require('mysql');
 
 let conn_ = mysql.createPool(config.database);
