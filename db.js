@@ -107,7 +107,7 @@ module.exports = function (pool) {
     this.update = function ($update, $callback, $safemode = true, $addslashes = true, $literal = false, $result_comparison_signal = '>'){
         let $where = self.mount_where();
 
-        if($safemode && $where.length === 0) return false;
+        if($safemode && $where.length === 0) throw new Error("ERROR - SAFE MODE - There isn't a where condition in UPDATE");
 
         self.updates = ($addslashes) ? self.addslashes($update) : $update;
 
@@ -120,7 +120,7 @@ module.exports = function (pool) {
     this.delete = function ($callback, $safemode = true, $result_comparison_signal = '>'){
         let $where = self.mount_where();
 
-        if($safemode && $where.length === 0) return false;
+        if($safemode && $where.length === 0) throw new Error("ERROR - SAFE MODE - There isn't a where condition in DELETE");
 
         self.sql = "DELETE FROM " + self._table + $where;
 
