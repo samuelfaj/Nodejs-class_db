@@ -221,7 +221,7 @@ module.exports = function (pool) {
 
         let $conditions = [];
         for (let key_ in self.orders) {
-            $conditions.push(key_ + " = "  + self.updates[key_]);
+            $conditions.push(self.orders[key_].field + " "  + self.orders[key_].order);
         }
 
         return ' ORDER BY ' + $conditions.join(' , ');
@@ -244,6 +244,7 @@ module.exports = function (pool) {
 
         if(typeof $string === 'string'){
             return $string
+                .toString()
                 .replace(/\\/g, '\\\\')
                 .replace(/\t/g, '\\t')
                 .replace(/\n/g, '\\n')
@@ -257,6 +258,7 @@ module.exports = function (pool) {
         if(typeof $string === 'object'){
             for (let key in $string) {
                 $array[key] = $string[key]
+                .toString()
                 .replace(/\\/g, '\\\\')
                 .replace(/\t/g, '\\t')
                 .replace(/\n/g, '\\n')

@@ -1,0 +1,28 @@
+{
+  "name": "class_db",
+  "version": "1.0.0",
+  "description": "It makes your MySQL queries easier.",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelfaj/Nodejs-class_db.git"
+  },
+  "keywords": [
+    "nodejs",
+    "mysql",
+    "database",
+    "class",
+    "dba",
+    "query",
+    "helper"
+  ],
+  "author": "Samuel Fajreldines",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samuelfaj/Nodejs-class_db/issues"
+  },
+  "homepage": "https://github.com/samuelfaj/Nodejs-class_db#readme"
+}
